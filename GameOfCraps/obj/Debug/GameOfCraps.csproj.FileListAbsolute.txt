@@ -10,3 +10,4 @@ C:\Users\Aaron\Desktop\GameOfCraps\GameOfCraps\obj\Debug\GameOfCraps.Properties.
 C:\Users\Aaron\Desktop\GameOfCraps\GameOfCraps\obj\Debug\GameOfCraps.csproj.GenerateResource.Cache
 C:\Users\Aaron\Desktop\GameOfCraps\GameOfCraps\obj\Debug\GameOfCraps.exe
 C:\Users\Aaron\Desktop\GameOfCraps\GameOfCraps\obj\Debug\GameOfCraps.pdb
+C:\Users\Aaron\Desktop\GameOfCraps\GameOfCraps\obj\Debug\GameOfCraps.csprojResolveAssemblyReference.cache
