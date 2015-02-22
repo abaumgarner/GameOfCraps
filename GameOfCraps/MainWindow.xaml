@@ -1,0 +1,24 @@
+﻿<Window x:Name="GameWindow" x:Class="GameOfCraps.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        Title="Game Of Craps" Height="527.5" Width="666">
+    <Grid>
+        <Menu IsMainMenu="True">
+            <MenuItem x:Name="mm_Game" Header="_Game" >
+                <MenuItem x:Name="mm_Game_Start" Header="_Start" />
+                <Separator />
+                <MenuItem x:Name="mm_Game_Reset" Header="_Reset" />
+                <Separator />
+                <MenuItem x:Name="mm_Game_Exit" Header="_Exit" />
+            </MenuItem>
+            <MenuItem x:Name="mm_Help" Header="_Help">
+                <MenuItem x:Name="mm_Help_About" Header="_About" />
+                <Separator />
+                <MenuItem x:Name="mm_Help_Rules" Header="_Rules" />
+            </MenuItem>
+        </Menu>
+        <Button x:Name="btn_Roll" Content="Roll Dice" HorizontalAlignment="Left" Margin="90,156,0,0" VerticalAlignment="Top" Width="75"/>
+
+
+    </Grid>
+</Window>

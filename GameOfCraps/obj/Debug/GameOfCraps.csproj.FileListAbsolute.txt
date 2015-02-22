@@ -1,0 +1,12 @@
+C:\Users\Aaron\Desktop\GameOfCraps\GameOfCraps\bin\Debug\GameOfCraps.exe.config
+C:\Users\Aaron\Desktop\GameOfCraps\GameOfCraps\bin\Debug\GameOfCraps.exe
+C:\Users\Aaron\Desktop\GameOfCraps\GameOfCraps\bin\Debug\GameOfCraps.pdb
+C:\Users\Aaron\Desktop\GameOfCraps\GameOfCraps\obj\Debug\MainWindow.baml
+C:\Users\Aaron\Desktop\GameOfCraps\GameOfCraps\obj\Debug\MainWindow.g.cs
+C:\Users\Aaron\Desktop\GameOfCraps\GameOfCraps\obj\Debug\App.g.cs
+C:\Users\Aaron\Desktop\GameOfCraps\GameOfCraps\obj\Debug\GameOfCraps_MarkupCompile.cache
+C:\Users\Aaron\Desktop\GameOfCraps\GameOfCraps\obj\Debug\GameOfCraps.g.resources
+C:\Users\Aaron\Desktop\GameOfCraps\GameOfCraps\obj\Debug\GameOfCraps.Properties.Resources.resources
+C:\Users\Aaron\Desktop\GameOfCraps\GameOfCraps\obj\Debug\GameOfCraps.csproj.GenerateResource.Cache
+C:\Users\Aaron\Desktop\GameOfCraps\GameOfCraps\obj\Debug\GameOfCraps.exe
+C:\Users\Aaron\Desktop\GameOfCraps\GameOfCraps\obj\Debug\GameOfCraps.pdb
