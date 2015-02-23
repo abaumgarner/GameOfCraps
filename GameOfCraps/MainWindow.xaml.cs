@@ -23,6 +23,8 @@ namespace GameOfCraps
         public static RoutedCommand KeyboardCommand = new RoutedCommand();
         private int _numPlayerWins = 0;
         private int _numHouseWins = 0;
+        private int _point = 0;
+        private int _numRoll;
 
         public MainWindow()
         {
@@ -87,6 +89,7 @@ namespace GameOfCraps
             int dieOneRoll, dieTwoRoll, total;
             Random rand = new Random();
 
+            _numRoll++;
             dieOneRoll = rand.Next(1, 6);
             txtBox_DieOne.Text = dieOneRoll.ToString();
 
@@ -95,22 +98,25 @@ namespace GameOfCraps
 
             total = dieOneRoll + dieTwoRoll;
 
-            CheckPoints(total);
+            if(_numRoll == 1)
+                CheckFirstRollPoints(total);
+
+            if (_point != 0)
+                txtBox_Point.Text = _point.ToString();
 
             txtBox_Total.Text = total.ToString();
-
             txtBox_PlayerWins.Text = _numPlayerWins.ToString();
             txtBox_HouseWins.Text = _numHouseWins.ToString();
         }
 
-        private void CheckPoints(int total)
+        private void CheckFirstRollPoints(int total)
         {
             if (total == 11 || total == 7)
                  _numPlayerWins++;
             else if (total == 2 || total == 3 || total == 12)
                 _numHouseWins++;
             else if (total == 4 || total == 5 || total == 6 || total == 8 || total == 9 || total == 10)
-                txtBox_Point.Text = total.ToString();
+                _point = total;
         }
     }
 }
