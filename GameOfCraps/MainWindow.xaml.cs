@@ -21,13 +21,20 @@ namespace GameOfCraps
     public partial class MainWindow : Window
     {
         public static RoutedCommand KeyboardCommand = new RoutedCommand();
-        
+        private int _numPlayerWins = 0;
+        private int _numHouseWins = 0;
+
         public MainWindow()
         {
             InitializeComponent();
         }
 
         private void mm_Game_Start_Click(object sender, RoutedEventArgs e)
+        {
+            StartGame();
+        }
+
+        private void StartGame()
         {
             btn_Roll.IsEnabled = true;
         }
@@ -57,13 +64,17 @@ namespace GameOfCraps
 
         private void mm_Help_Shortcuts_Click(object sender, RoutedEventArgs e)
         {
-            MessageBox.Show("CTRL + Q - Exits Program" + Environment.NewLine + "CTRL + A - About", "Keybord Shortcuts");
+            MessageBox.Show("CTRL + Q - Exits Program" + Environment.NewLine + "CTRL + A - About" + Environment.NewLine + "CTRL + S - Starts the game" + Environment.NewLine + "R - Rolls the die" + Environment.NewLine + "P - Play again", "Keybord Shortcuts");
         }
 
         private void GameWindow_KeyDown(object sender, KeyEventArgs e)
         {
-            if(e.Key == Key.Q)
+            if((Keyboard.Modifiers == ModifierKeys.Control) && (e.Key == Key.Q))
                 ClosingGame();
+            else if((Keyboard.Modifiers == ModifierKeys.Control) && (e.Key == Key.S))
+                StartGame();
+            else if((Keyboard.Modifiers == ModifierKeys.Control) && (e.Key == Key.A))
+                ShowAboutMessage();
         }
 
         private void mm_Help_Rules_Click(object sender, RoutedEventArgs e)
@@ -84,8 +95,22 @@ namespace GameOfCraps
 
             total = dieOneRoll + dieTwoRoll;
 
+            CheckPoints(total);
+
             txtBox_Total.Text = total.ToString();
+
+            txtBox_PlayerWins.Text = _numPlayerWins.ToString();
+            txtBox_HouseWins.Text = _numHouseWins.ToString();
         }
 
+        private void CheckPoints(int total)
+        {
+            if (total == 11 || total == 7)
+                 _numPlayerWins++;
+            else if (total == 2 || total == 3 || total == 12)
+                _numHouseWins++;
+            else if (total == 4 || total == 5 || total == 6 || total == 8 || total == 9 || total == 10)
+                txtBox_Point.Text = total.ToString();
+        }
     }
 }
