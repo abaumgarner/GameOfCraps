@@ -7,7 +7,7 @@
             <MenuItem x:Name="mm_Game" Header="_Game" FontSize="18" >
                 <MenuItem x:Name="mm_Game_Start" Header="_Start" Click="mm_Game_Start_Click" />
                 <Separator />
-                <MenuItem x:Name="mm_Game_Reset" Header="_Reset" />
+                <MenuItem x:Name="mm_Game_Reset" Header="_Reset" IsEnabled="False" Click="mm_Game_Reset_Click" />
                 <Separator />
                 <MenuItem x:Name="mm_Game_Exit" Header="_Exit" Click="mm_Game_Exit_Click" />
             </MenuItem>
@@ -38,9 +38,10 @@
                 <TextBox x:Name="txtBox_HouseWins" IsReadOnly="True" HorizontalAlignment="Left" Height="23" Margin="160,85,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="120"/>
             </Grid>
         </GroupBox>
-        <Button x:Name="btn_PlayAgain" Content="_Play Again" HorizontalAlignment="Left" Margin="31,376,0,0" VerticalAlignment="Top" Width="91" FontSize="18" Height="34" BorderThickness="2" />
+        <Button x:Name="btn_PlayAgain" Content="_Play Again" HorizontalAlignment="Left" Margin="31,376,0,0" VerticalAlignment="Top" Width="91" FontSize="18" Height="34" BorderThickness="2" IsEnabled="False" Click="btn_PlayAgain_Click" />
         <Label x:Name="lbl_Point" Content="Point:" HorizontalAlignment="Left" Margin="31,178,0,0" VerticalAlignment="Top" FontSize="18" Height="32" Width="57"/>
         <TextBox x:Name="txtBox_Point" IsReadOnly="True" HorizontalAlignment="Left" Height="23" Margin="95,185,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="70" FontSize="18"/>
+        <TextBox x:Name="txtBox_WinLose" IsReadOnly ="True" HorizontalAlignment="Left" Height="23" Margin="31,277,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="120" FontSize="20" BorderThickness="0" Visibility="Hidden"/>
 
 
     </Grid>

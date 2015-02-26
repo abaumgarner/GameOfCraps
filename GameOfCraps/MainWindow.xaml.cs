@@ -39,6 +39,8 @@ namespace GameOfCraps
         private void StartGame()
         {
             btn_Roll.IsEnabled = true;
+            btn_PlayAgain.IsEnabled = false;
+            mm_Game_Start.IsEnabled = false;
         }
 
         private void mm_Game_Exit_Click(object sender, RoutedEventArgs e)
@@ -100,23 +102,95 @@ namespace GameOfCraps
 
             if(_numRoll == 1)
                 CheckFirstRollPoints(total);
+            else
+            {
+                CheckContinueRolls(total);
+            }
 
-            if (_point != 0)
-                txtBox_Point.Text = _point.ToString();
+            txtBox_Point.Text = _point.ToString();
 
             txtBox_Total.Text = total.ToString();
             txtBox_PlayerWins.Text = _numPlayerWins.ToString();
             txtBox_HouseWins.Text = _numHouseWins.ToString();
         }
 
+        private void CheckContinueRolls(int total)
+        {
+            if (total == 7)
+            {
+                HouseWins();
+            }
+            else if (total == _point)
+            {
+                PlayerWins();
+            }
+        }
+
+        private void PlayerWins()
+        {
+            btn_Roll.IsEnabled = false;
+            btn_PlayAgain.IsEnabled = true;
+            mm_Game_Reset.IsEnabled = true;
+
+            txtBox_WinLose.Text = "Winner!";
+            txtBox_WinLose.Visibility = Visibility.Visible;
+            _numPlayerWins++;
+
+            txtBox_Point.Text = "";
+        }
+
+        private void HouseWins()
+        {
+            _numHouseWins++;
+            txtBox_WinLose.Text = "Loser!";
+            txtBox_WinLose.Visibility = Visibility.Visible;
+
+            btn_Roll.IsEnabled = false;
+            btn_PlayAgain.IsEnabled = true;
+            mm_Game_Reset.IsEnabled = true;
+
+            txtBox_Point.Text = "";
+        }
+
         private void CheckFirstRollPoints(int total)
         {
             if (total == 11 || total == 7)
-                 _numPlayerWins++;
+            {
+               PlayerWins();
+            }
             else if (total == 2 || total == 3 || total == 12)
-                _numHouseWins++;
+            {
+                HouseWins();
+            }
             else if (total == 4 || total == 5 || total == 6 || total == 8 || total == 9 || total == 10)
+            {
                 _point = total;
+            }
+        }
+
+        private void btn_PlayAgain_Click(object sender, RoutedEventArgs e)
+        {
+            txtBox_Total.Text = "";
+            txtBox_Point.Text = "";
+            txtBox_DieOne.Text = "";
+            txtBox_DieTwo.Text = "";
+            _point = 0;
+            _numRoll = 0;
+
+            txtBox_WinLose.Visibility = Visibility.Hidden;
+            StartGame();
+        }
+
+        private void mm_Game_Reset_Click(object sender, RoutedEventArgs e)
+        {
+            txtBox_Total.Text = "";
+            txtBox_Point.Text = "";
+            txtBox_DieOne.Text = "";
+            txtBox_DieTwo.Text = "";
+            _numPlayerWins = 0;
+            _numHouseWins = 0;
+            _point = 0;
+            _numRoll = 0;
         }
     }
 }
