@@ -10,6 +10,8 @@ namespace GameOfCraps
     public partial class MainWindow : Window
     {
         public static RoutedCommand KeyboardCommand = new RoutedCommand();
+        private int _betAmount;
+        private int _bankAmount;
         private int _numHouseWins;
         private int _numPlayerWins;
         private int _numRoll;
@@ -120,7 +122,6 @@ namespace GameOfCraps
             txtBox_Total.Text = total.ToString();
             txtBox_PlayerWins.Text = _numPlayerWins.ToString();
             txtBox_HouseWins.Text = _numHouseWins.ToString();
-
         }
 
         private void CheckContinueRolls(int total)
@@ -196,10 +197,61 @@ namespace GameOfCraps
             txtBox_Point.Text = "";
             txtBox_DieOne.Text = "";
             txtBox_DieTwo.Text = "";
+            txtBox_BetAmount.Text = "";
+
             _numPlayerWins = 0;
             _numHouseWins = 0;
             _point = 0;
             _numRoll = 0;
+            _betAmount = 0;
+        }
+
+        private void btn_Bet_Five_Click(object sender, RoutedEventArgs e)
+        {
+            AddToBet(5);
+        }
+
+        private void AddToBet(int i)
+        {
+            _betAmount += i;
+            txtBox_BetAmount.Text = _betAmount.ToString();
+        }
+
+        private void btn_Bet_Ten_Click(object sender, RoutedEventArgs e)
+        {
+            AddToBet(10);
+        }
+
+        private void btn_Bet_Fifty_Click(object sender, RoutedEventArgs e)
+        {
+            AddToBet(50);
+        }
+
+        private void btn_Bet_Hundred_Click(object sender, RoutedEventArgs e)
+        {
+            AddToBet(100);
+        }
+
+        private void btn_Bet_FiveHundred_Click(object sender, RoutedEventArgs e)
+        {
+            AddToBet(500);
+        }
+
+        private void txtBox_BankAmount_LostFocus(object sender, RoutedEventArgs e)
+        {
+            _bankAmount = Convert.ToInt32(txtBox_BankAmount.Text);
+            while (_bankAmount == 0)
+            {
+                this.Focus();
+                
+                _bankAmount = Convert.ToInt32(txtBox_BankAmount.Text);
+            }
+            txtBox_BankAmount.IsReadOnly = true;
+        }
+
+        private void GameWindow_Loaded(object sender, RoutedEventArgs e)
+        {
+            txtBox_BankAmount.Focus();
         }
     }
 }
