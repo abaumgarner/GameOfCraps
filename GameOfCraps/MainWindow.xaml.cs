@@ -1,4 +1,10 @@
-﻿using System;
+﻿/*
+ * Aaron Baumgarner
+ * Notes: I added a regex to varify the user enters a non-negative and greater than zero number. It was surprisingly easy.
+ *          
+ */
+
+using System;
 using System.Text.RegularExpressions;
 using System.Windows;
 using System.Windows.Input;
@@ -33,6 +39,7 @@ namespace GameOfCraps
             btn_Roll.IsEnabled = true;
             btn_PlayAgain.IsEnabled = false;
             mm_Game_Start.IsEnabled = false;
+            EnableBetAmounts();
         }
 
         private void mm_Game_Exit_Click(object sender, RoutedEventArgs e)
@@ -96,6 +103,7 @@ namespace GameOfCraps
 
         private void btn_Roll_Click(object sender, RoutedEventArgs e)
         {
+            DisableAllBetBtn();
             int dieOneRoll, dieTwoRoll, total;
             var rand = new Random();
             btn_Roll.IsEnabled = false;
@@ -149,8 +157,9 @@ namespace GameOfCraps
 
             txtBox_Point.Text = "";
 
-            _bankAmount += _betAmount*2;
-            txtBox_BankAmount.Text = _betAmount.ToString();
+            _bankAmount += (_betAmount*2);
+            txtBox_BankAmount.Text = _bankAmount.ToString();
+            _betAmount = 0;
         }
 
         private void HouseWins()
@@ -194,6 +203,7 @@ namespace GameOfCraps
             txtBox_Point.Text = "";
             txtBox_DieOne.Text = "";
             txtBox_DieTwo.Text = "";
+            txtBox_BetAmount.Text = "";
             _point = 0;
             _numRoll = 0;
 
@@ -212,11 +222,13 @@ namespace GameOfCraps
             txtBox_Point.Text = "";
             txtBox_DieOne.Text = "";
             txtBox_DieTwo.Text = "";
+            txtBox_BankAmount.Text = "";
             txtBox_BetAmount.Text = 0.ToString();
             
             btn_BankSet.IsEnabled = true;
             btn_PlayAgain.IsEnabled = false;
             txtBox_BankAmount.IsReadOnly = false;
+            txtBox_WinLose.Visibility = Visibility.Hidden;
 
             _numPlayerWins = 0;
             _numHouseWins = 0;
@@ -240,6 +252,7 @@ namespace GameOfCraps
             txtBox_BankAmount.Text = _bankAmount.ToString();
 
             EnableBetAmounts();
+            mm_Game_Start.IsEnabled = true;
         }
 
         private void btn_Bet_One_Click(object sender, RoutedEventArgs e)
@@ -269,6 +282,7 @@ namespace GameOfCraps
 
         private void GameWindow_Loaded(object sender, RoutedEventArgs e)
         {
+            MessageBox.Show("Please set your bank amount before playing.");
             txtBox_BankAmount.Focus();
         }
 
@@ -279,7 +293,7 @@ namespace GameOfCraps
 
         private void BankControl()
         {
-            string pattern = @"[1-9]{1}[0-9]*";
+            string pattern = @"^\-{0}[1-9]{1}[0-9]*";
             string input;
             Match matches;
             
@@ -300,7 +314,6 @@ namespace GameOfCraps
             {
                 _bankAmount = Convert.ToInt32(txtBox_BankAmount.Text);
                 txtBox_BankAmount.IsReadOnly = true;
-                mm_Game_Start.IsEnabled = true;
                 btn_BankSet.IsEnabled = false;
                 EnableBetAmounts();
             }
@@ -337,10 +350,12 @@ namespace GameOfCraps
                 btn_Bet_FiveHundred.IsEnabled = true;
             else
                 btn_Bet_FiveHundred.IsEnabled = false;
+
             }
 
         private void DisableAllBetBtn()
         {
+            btn_Bet_One.IsEnabled = false;
             btn_Bet_Five.IsEnabled = false;
             btn_Bet_Ten.IsEnabled = false;
             btn_Bet_Fifty.IsEnabled = false;

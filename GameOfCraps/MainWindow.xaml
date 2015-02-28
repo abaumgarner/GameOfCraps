@@ -5,14 +5,14 @@
     <Grid>
         <Menu x:Name="gBox_Main" IsMainMenu="True">
             <MenuItem x:Name="mm_Game" Header="_Game" FontSize="18" >
-                <MenuItem x:Name="mm_Game_Start" IsEnabled="False" Header="_Start" Click="mm_Game_Start_Click" />
+                <MenuItem x:Name="mm_Game_Start" IsEnabled="False" Header="_Start" Click="mm_Game_Start_Click" InputGestureText="CTRL+S" />
                 <Separator />
                 <MenuItem x:Name="mm_Game_Reset" Header="_Reset" IsEnabled="False" Click="mm_Game_Reset_Click" />
                 <Separator />
                 <MenuItem x:Name="mm_Game_Exit" Header="_Exit" Click="mm_Game_Exit_Click" />
             </MenuItem>
             <MenuItem x:Name="mm_Help" Header="_Help" FontSize="18">
-                <MenuItem x:Name="mm_Help_About" Header="_About" Click="mm_Help_About_Click" />
+                <MenuItem x:Name="mm_Help_About" Header="_About" Click="mm_Help_About_Click" InputGestureText="CTRL+A"/>
                 <Separator />
                 <MenuItem x:Name="mm_Help_Rules" Header="_Rules" Click="mm_Help_Rules_Click" />
                 <Separator />
@@ -38,14 +38,14 @@
                 <TextBox x:Name="txtBox_HouseWins" IsReadOnly="True" HorizontalAlignment="Left" Height="23" Margin="160,85,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="120"/>
             </Grid>
         </GroupBox>
-        <Button x:Name="btn_PlayAgain" Content="_Play Again" HorizontalAlignment="Left" Margin="31,376,0,0" VerticalAlignment="Top" Width="91" FontSize="18" Height="34" BorderThickness="2" IsEnabled="False" Click="btn_PlayAgain_Click" />
+        <Button x:Name="btn_PlayAgain" Content="_Play Again" HorizontalAlignment="Left" Margin="31,378,0,0" VerticalAlignment="Top" Width="91" FontSize="18" Height="34" BorderThickness="2" IsEnabled="False" Click="btn_PlayAgain_Click" />
         <Label x:Name="lbl_Point" Content="Point:" HorizontalAlignment="Left" Margin="31,178,0,0" VerticalAlignment="Top" FontSize="18" Height="32" Width="57"/>
         <TextBox x:Name="txtBox_Point" IsReadOnly="True" HorizontalAlignment="Left" Height="23" Margin="95,185,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="70" FontSize="18"/>
         <TextBox x:Name="txtBox_WinLose" IsReadOnly ="True" HorizontalAlignment="Left" Height="23" Margin="31,277,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="120" FontSize="20" BorderThickness="0" Visibility="Hidden"/>
         <GroupBox x:Name="gBox_Bank" Header="Bank" Margin="560,14,38,0" VerticalAlignment="Top" Height="146" FontSize="18">
             <Grid HorizontalAlignment="Left" Height="151" Margin="10,0,-2,-6" VerticalAlignment="Top" Width="133">
                 <Label Content="$" HorizontalAlignment="Left" Margin="10,25,0,0" VerticalAlignment="Top"/>
-                <TextBox x:Name="txtBox_BankAmount" HorizontalAlignment="Left" Height="23" TextWrapping="Wrap" Text="0" VerticalAlignment="Top" Width="88" Margin="35,30,0,0" />
+                <TextBox x:Name="txtBox_BankAmount" HorizontalAlignment="Left" Height="23" TextWrapping="Wrap" VerticalAlignment="Top" Width="88" Margin="35,30,0,0" />
                 <Button x:Name="btn_BankSet" Content="Set Bank" HorizontalAlignment="Left" Margin="35,74,0,0" VerticalAlignment="Top" Width="75" Click="btn_BankSet_Click"/>
             </Grid>
         </GroupBox>
