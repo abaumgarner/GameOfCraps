@@ -1,13 +1,18 @@
 ﻿/*
  * Aaron Baumgarner
  * Notes: I added a regex to varify the user enters a non-negative and greater than zero number. It was surprisingly easy.
- *          
+ *          I also added sounds for fun. Needed a little something to relax with. When the dice are rolled it plays a sound 
+ *          of dice being thrown. When you win it plays a win sound and when you lose it plays a different sound.
  */
 
 using System;
+using System.IO;
 using System.Text.RegularExpressions;
 using System.Windows;
 using System.Windows.Input;
+using System.Windows.Media;
+using Microsoft.Win32;
+using System.Media;
 
 namespace GameOfCraps
 {
@@ -103,6 +108,12 @@ namespace GameOfCraps
 
         private void btn_Roll_Click(object sender, RoutedEventArgs e)
         {
+            if (File.Exists("dice_roll.wav"))
+            {
+                SoundPlayer player = new SoundPlayer("dice_roll.wav");
+                player.Play();
+            }
+
             DisableAllBetBtn();
             int dieOneRoll, dieTwoRoll, total;
             var rand = new Random();
@@ -147,6 +158,12 @@ namespace GameOfCraps
 
         private void PlayerWins()
         {
+            if (File.Exists("win.wav"))
+            {
+                SoundPlayer player = new SoundPlayer("win.wav");
+                player.Play();
+            }
+
             btn_Roll.IsEnabled = false;
             btn_PlayAgain.IsEnabled = true;
             mm_Game_Reset.IsEnabled = true;
@@ -164,6 +181,12 @@ namespace GameOfCraps
 
         private void HouseWins()
         {
+            if (File.Exists("lose.wav"))
+            {
+                SoundPlayer player = new SoundPlayer("lose.wav");
+                player.Play();
+            }
+
             _numHouseWins++;
             txtBox_WinLose.Text = "Loser!";
             txtBox_WinLose.Visibility = Visibility.Visible;
