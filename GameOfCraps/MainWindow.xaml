@@ -5,7 +5,7 @@
     <Grid>
         <Menu x:Name="gBox_Main" IsMainMenu="True">
             <MenuItem x:Name="mm_Game" Header="_Game" FontSize="18" >
-                <MenuItem x:Name="mm_Game_Start" Header="_Start" Click="mm_Game_Start_Click" />
+                <MenuItem x:Name="mm_Game_Start" IsEnabled="False" Header="_Start" Click="mm_Game_Start_Click" />
                 <Separator />
                 <MenuItem x:Name="mm_Game_Reset" Header="_Reset" IsEnabled="False" Click="mm_Game_Reset_Click" />
                 <Separator />
@@ -42,21 +42,23 @@
         <Label x:Name="lbl_Point" Content="Point:" HorizontalAlignment="Left" Margin="31,178,0,0" VerticalAlignment="Top" FontSize="18" Height="32" Width="57"/>
         <TextBox x:Name="txtBox_Point" IsReadOnly="True" HorizontalAlignment="Left" Height="23" Margin="95,185,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="70" FontSize="18"/>
         <TextBox x:Name="txtBox_WinLose" IsReadOnly ="True" HorizontalAlignment="Left" Height="23" Margin="31,277,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="120" FontSize="20" BorderThickness="0" Visibility="Hidden"/>
-        <GroupBox x:Name="gBox_Bank" Header="Bank" Margin="560,73,38,0" VerticalAlignment="Top" Height="118" FontSize="18">
-            <Grid HorizontalAlignment="Left" Height="81" Margin="10,0,-2,0" VerticalAlignment="Top" Width="133">
+        <GroupBox x:Name="gBox_Bank" Header="Bank" Margin="560,14,38,0" VerticalAlignment="Top" Height="146" FontSize="18">
+            <Grid HorizontalAlignment="Left" Height="151" Margin="10,0,-2,-6" VerticalAlignment="Top" Width="133">
                 <Label Content="$" HorizontalAlignment="Left" Margin="10,25,0,0" VerticalAlignment="Top"/>
-                <TextBox x:Name="txtBox_BankAmount" HorizontalAlignment="Left" Height="23" TextWrapping="Wrap" Text="0" VerticalAlignment="Top" Width="88" Margin="35,30,0,0" LostFocus="txtBox_BankAmount_LostFocus" />
+                <TextBox x:Name="txtBox_BankAmount" HorizontalAlignment="Left" Height="23" TextWrapping="Wrap" Text="0" VerticalAlignment="Top" Width="88" Margin="35,30,0,0" />
+                <Button x:Name="btn_BankSet" Content="Set Bank" HorizontalAlignment="Left" Margin="35,74,0,0" VerticalAlignment="Top" Width="75" Click="btn_BankSet_Click"/>
             </Grid>
         </GroupBox>
-        <GroupBox x:Name="gBox_Bet" Header="Bet" HorizontalAlignment="Left" Margin="560,222,0,0" VerticalAlignment="Top" FontSize="18" Height="261" Width="153">
-            <Grid x:Name="grid_Bet" HorizontalAlignment="Left" Height="225" Margin="0,10,-2,-4" VerticalAlignment="Top" Width="143">
+        <GroupBox x:Name="gBox_Bet" Header="Bet" HorizontalAlignment="Left" Margin="560,185,0,0" VerticalAlignment="Top" FontSize="18" Height="298" Width="153">
+            <Grid x:Name="grid_Bet" HorizontalAlignment="Left" Height="265" Margin="0,10,-2,-7" VerticalAlignment="Top" Width="143">
                 <Label Content="$" HorizontalAlignment="Left" Margin="10,10,0,0" VerticalAlignment="Top"/>
-                <Button x:Name="btn_Bet_Five" Content="+$5" HorizontalAlignment="Left" Margin="35,55,0,0" VerticalAlignment="Top" Width="75" Click="btn_Bet_Five_Click" IsEnabled="False"/>
-                <Button x:Name="btn_Bet_Ten" Content="+$10" HorizontalAlignment="Left" Margin="35,88,0,0" VerticalAlignment="Top" Width="75" Click="btn_Bet_Ten_Click" IsEnabled="False"/>
-                <Button x:Name="btn_Bet_Fifty" Content="+$50" HorizontalAlignment="Left" Margin="35,121,0,0" VerticalAlignment="Top" Width="75" Click="btn_Bet_Fifty_Click" IsEnabled="False"/>
-                <Button x:Name="btn_Bet_Hundred" Content="+$100" HorizontalAlignment="Left" Margin="35,154,0,0" VerticalAlignment="Top" Width="75" Click="btn_Bet_Hundred_Click" IsEnabled="False"/>
-                <Button x:Name="btn_Bet_FiveHundred" Content="+$500" HorizontalAlignment="Left" Margin="35,187,0,0" VerticalAlignment="Top" Width="75" Click="btn_Bet_FiveHundred_Click" IsEnabled="False"/>
-                <TextBox x:Name="txtBox_BetAmount" IsReadOnly="True" HorizontalAlignment="Left" Height="23" Margin="35,16,0,0" TextWrapping="Wrap" Text="0" VerticalAlignment="Top" Width="98"/>
+                <Button x:Name="btn_Bet_Five" Content="+$5" HorizontalAlignment="Left" Margin="35,92,0,0" VerticalAlignment="Top" Width="75" Click="btn_Bet_Five_Click" IsEnabled="False"/>
+                <Button x:Name="btn_Bet_Ten" Content="+$10" HorizontalAlignment="Left" Margin="35,125,0,0" VerticalAlignment="Top" Width="75" Click="btn_Bet_Ten_Click" IsEnabled="False"/>
+                <Button x:Name="btn_Bet_Fifty" Content="+$50" HorizontalAlignment="Left" Margin="35,158,0,0" VerticalAlignment="Top" Width="75" Click="btn_Bet_Fifty_Click" IsEnabled="False"/>
+                <Button x:Name="btn_Bet_Hundred" Content="+$100" HorizontalAlignment="Left" Margin="35,191,0,0" VerticalAlignment="Top" Width="75" Click="btn_Bet_Hundred_Click" IsEnabled="False"/>
+                <Button x:Name="btn_Bet_FiveHundred" Content="+$500" HorizontalAlignment="Left" Margin="35,224,0,-7" VerticalAlignment="Top" Width="75" Click="btn_Bet_FiveHundred_Click" IsEnabled="False"/>
+                <TextBox x:Name="txtBox_BetAmount" IsReadOnly="True" HorizontalAlignment="Left" Height="23" Margin="35,16,0,0" TextWrapping="Wrap" Text="0" VerticalAlignment="Top" Width="98" Grid.ColumnSpan="2"/>
+                <Button x:Name="btn_Bet_One" Content="+$1" HorizontalAlignment="Left" Margin="35,59,0,0" VerticalAlignment="Top" Width="75" IsEnabled="False" Click="btn_Bet_One_Click"/>
             </Grid>
         </GroupBox>
         <ScrollViewer HorizontalAlignment="Left" Height="100" Margin="-123,277,0,0" VerticalAlignment="Top" Width="100"/>

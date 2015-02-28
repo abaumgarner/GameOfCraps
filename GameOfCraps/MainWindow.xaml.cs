@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Text.RegularExpressions;
 using System.Windows;
 using System.Windows.Input;
 
@@ -147,6 +148,9 @@ namespace GameOfCraps
             _numPlayerWins++;
 
             txtBox_Point.Text = "";
+
+            _bankAmount += _betAmount*2;
+            txtBox_BankAmount.Text = _betAmount.ToString();
         }
 
         private void HouseWins()
@@ -160,6 +164,12 @@ namespace GameOfCraps
             mm_Game_Reset.IsEnabled = true;
 
             txtBox_Point.Text = "";
+
+            if (_bankAmount == 0)
+            {
+                MessageBox.Show("You are out of money. The game will now reset.");
+                ResetGame();
+            }
         }
 
         private void CheckFirstRollPoints(int total)
@@ -193,17 +203,28 @@ namespace GameOfCraps
 
         private void mm_Game_Reset_Click(object sender, RoutedEventArgs e)
         {
+            ResetGame();
+        }
+
+        private void ResetGame()
+        {
             txtBox_Total.Text = "";
             txtBox_Point.Text = "";
             txtBox_DieOne.Text = "";
             txtBox_DieTwo.Text = "";
-            txtBox_BetAmount.Text = "";
+            txtBox_BetAmount.Text = 0.ToString();
+            
+            btn_BankSet.IsEnabled = true;
+            btn_PlayAgain.IsEnabled = false;
+            txtBox_BankAmount.IsReadOnly = false;
 
             _numPlayerWins = 0;
             _numHouseWins = 0;
             _point = 0;
             _numRoll = 0;
             _betAmount = 0;
+
+            txtBox_BankAmount.Focus();
         }
 
         private void btn_Bet_Five_Click(object sender, RoutedEventArgs e)
@@ -214,7 +235,16 @@ namespace GameOfCraps
         private void AddToBet(int i)
         {
             _betAmount += i;
+            _bankAmount -= i;
             txtBox_BetAmount.Text = _betAmount.ToString();
+            txtBox_BankAmount.Text = _bankAmount.ToString();
+
+            EnableBetAmounts();
+        }
+
+        private void btn_Bet_One_Click(object sender, RoutedEventArgs e)
+        {
+            AddToBet(1);
         }
 
         private void btn_Bet_Ten_Click(object sender, RoutedEventArgs e)
@@ -237,21 +267,86 @@ namespace GameOfCraps
             AddToBet(500);
         }
 
-        private void txtBox_BankAmount_LostFocus(object sender, RoutedEventArgs e)
-        {
-            _bankAmount = Convert.ToInt32(txtBox_BankAmount.Text);
-            while (_bankAmount == 0)
-            {
-                this.Focus();
-                
-                _bankAmount = Convert.ToInt32(txtBox_BankAmount.Text);
-            }
-            txtBox_BankAmount.IsReadOnly = true;
-        }
-
         private void GameWindow_Loaded(object sender, RoutedEventArgs e)
         {
             txtBox_BankAmount.Focus();
         }
+
+        private void btn_BankSet_Click(object sender, RoutedEventArgs e)
+        {
+            BankControl();
+        }
+
+        private void BankControl()
+        {
+            string pattern = @"[1-9]{1}[0-9]*";
+            string input;
+            Match matches;
+            
+            txtBox_BankAmount.Focus();
+
+            input = txtBox_BankAmount.Text;
+            Regex rgx = new Regex(pattern, RegexOptions.IgnoreCase);
+            matches = rgx.Match(input);
+
+
+            if (!matches.Success)
+            {
+                MessageBox.Show("Invalid input");
+                txtBox_BankAmount.Text = String.Empty;
+                txtBox_BankAmount.Focus();
+            }
+            else
+            {
+                _bankAmount = Convert.ToInt32(txtBox_BankAmount.Text);
+                txtBox_BankAmount.IsReadOnly = true;
+                mm_Game_Start.IsEnabled = true;
+                btn_BankSet.IsEnabled = false;
+                EnableBetAmounts();
+            }
+        }
+
+        private void EnableBetAmounts()
+        {
+            if(_bankAmount >= 1)
+                btn_Bet_One.IsEnabled = true;
+            else
+                btn_Bet_One.IsEnabled = false;
+            
+            if(_bankAmount >= 5)
+                btn_Bet_Five.IsEnabled = true;
+            else
+                btn_Bet_Five.IsEnabled = false;
+
+            if(_bankAmount >= 10)
+                btn_Bet_Ten.IsEnabled = true;
+            else
+                btn_Bet_Ten.IsEnabled = false;
+
+            if(_bankAmount >= 50)
+                btn_Bet_Fifty.IsEnabled = true;
+            else
+                btn_Bet_Fifty.IsEnabled = false;
+
+            if(_bankAmount >= 100)
+                btn_Bet_Hundred.IsEnabled = true;
+            else
+                btn_Bet_Hundred.IsEnabled = false;
+
+            if(_bankAmount >= 500)
+                btn_Bet_FiveHundred.IsEnabled = true;
+            else
+                btn_Bet_FiveHundred.IsEnabled = false;
+            }
+
+        private void DisableAllBetBtn()
+        {
+            btn_Bet_Five.IsEnabled = false;
+            btn_Bet_Ten.IsEnabled = false;
+            btn_Bet_Fifty.IsEnabled = false;
+            btn_Bet_Hundred.IsEnabled = false;
+            btn_Bet_FiveHundred.IsEnabled = false;
+        }
+
     }
 }
